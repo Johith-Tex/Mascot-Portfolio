@@ -1,13 +1,13 @@
 import { a as __toESM } from "../_runtime.mjs";
-import { c as require_jsx_runtime, l as require_react } from "../_libs/@react-three/drei+[...].mjs";
+import { o as require_jsx_runtime, s as require_react } from "../_libs/@react-three/drei+[...].mjs";
 import { t as texio_character_default } from "./texio-character-CyFhnXQh.mjs";
 import { M as useRouter, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CDrFNEkJ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-CZvxyqQs.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-CTnD6cBD.css";
+var styles_default = "/assets/styles-COtU0fQ-.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -169,7 +169,8 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter = () => import("./routes-B8OyPwsv.mjs");
+var $$splitComponentImporter = () => import("./routes-C5HkuVYW.mjs");
+(0, import_react.lazy)(() => import("./ShieldScene-D3XIYfrm.mjs"));
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "TEX.IO — Game Developer & Software Engineer" },

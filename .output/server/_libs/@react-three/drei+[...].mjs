@@ -1,5 +1,5 @@
 import { a as __toESM, t as __commonJSMin } from "../../_runtime.mjs";
-import { B as RGBAFormat, C as HalfFloatType, D as LinearSRGBColorSpace, E as LinearFilter, F as OrthographicCamera, G as SRGBColorSpace, H as Raycaster, K as Scene, L as PerspectiveCamera, S as FloatType, T as Layers, U as RedFormat, a as three_module_exports, at as init_performance, d as ColorManagement, f as CubeTextureLoader, g as DataUtils, h as DataTextureLoader, i as WebGLRenderer, j as Mesh, l as Clock, n as HDRJPGLoader, nt as Vector3, ot as performance_default, q as ShaderMaterial, r as WebGLCubeRenderTarget, t as GainMapLoader, tt as Vector2, u as Color, w as IcosahedronGeometry } from "../@monogrid/gainmap-js+[...].mjs";
+import { C as PerspectiveCamera, D as SRGBColorSpace, E as RedFormat, F as performance_default, M as Vector2, N as Vector3, O as Scene, P as init_performance, T as Raycaster, _ as Layers, a as three_module_exports, b as Mesh, c as ColorManagement, d as DataTextureLoader, f as DataUtils, g as IcosahedronGeometry, h as HalfFloatType, i as WebGLRenderer, k as ShaderMaterial, l as CubeTextureLoader, m as FloatType, n as HDRJPGLoader, o as Clock, r as WebGLCubeRenderTarget, s as Color, t as GainMapLoader, v as LinearFilter, w as RGBAFormat, x as OrthographicCamera, y as LinearSRGBColorSpace } from "../@monogrid/gainmap-js+[...].mjs";
 import { t as _extends } from "../babel__runtime.mjs";
 import { setImmediate } from "node:timers";
 import process from "node:process";
@@ -9862,4 +9862,25 @@ function Environment(props) {
 	return props.ground ? /*#__PURE__*/ import_react.createElement(EnvironmentGround, props) : props.map ? /*#__PURE__*/ import_react.createElement(EnvironmentMap, props) : props.children ? /*#__PURE__*/ import_react.createElement(EnvironmentPortal, props) : /*#__PURE__*/ import_react.createElement(EnvironmentCube, props);
 }
 //#endregion
-export { useFrame as a, require_jsx_runtime as c, extend as i, require_react as l, Canvas as n, useThree as o, createPortal as r, require_with_selector as s, Environment as t };
+//#region node_modules/@react-three/drei/core/AdaptiveDpr.js
+function AdaptiveDpr({ pixelated }) {
+	const gl = useThree((state) => state.gl);
+	const active = useThree((state) => state.internal.active);
+	const current = useThree((state) => state.performance.current);
+	const initialDpr = useThree((state) => state.viewport.initialDpr);
+	const setDpr = useThree((state) => state.setDpr);
+	import_react.useEffect(() => {
+		const domElement = gl.domElement;
+		return () => {
+			if (active) setDpr(initialDpr);
+			if (pixelated && domElement) domElement.style.imageRendering = "auto";
+		};
+	}, []);
+	import_react.useEffect(() => {
+		setDpr(current * initialDpr);
+		if (pixelated && gl.domElement) gl.domElement.style.imageRendering = current === 1 ? "auto" : "pixelated";
+	}, [current]);
+	return null;
+}
+//#endregion
+export { require_with_selector as a, useFrame as i, Environment as n, require_jsx_runtime as o, Canvas as r, require_react as s, AdaptiveDpr as t };
