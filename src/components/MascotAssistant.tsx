@@ -139,7 +139,7 @@ export default function MascotAssistant() {
 
       {/* Mascot Video Container */}
       <motion.div 
-        className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-[var(--cap-blue)] shadow-[0_0_30px_rgba(230,36,41,0.3)] pointer-events-auto cursor-pointer"
+        className="relative w-24 h-24 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-[var(--cap-blue)] shadow-[0_0_30px_rgba(230,36,41,0.3)] pointer-events-auto cursor-pointer"
         whileHover={{ scale: 1.05, borderColor: "var(--cap-gold)", boxShadow: "0 0 40px rgba(126,24,235,0.6)" }}
         whileTap={{ scale: 0.95 }}
         onClick={() => playTalk("Do not tap the glass. I am armed.", 3000)}

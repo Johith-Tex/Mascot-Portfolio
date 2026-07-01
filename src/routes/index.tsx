@@ -196,7 +196,7 @@ function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.65 }}
-          className="mt-10 flex gap-12 justify-center"
+          className="mt-10 flex flex-wrap gap-6 md:gap-12 justify-center"
         >
           {[{ n: "2", l: "GAMES" }, { n: "5", l: "YEARS XP" }, { n: "100", l: "% PASSION" }].map((s) => (
             <div key={s.l}>
@@ -226,7 +226,7 @@ function Hero() {
       <motion.img 
         src={avatarImg}
         alt="Texio Avatar"
-        className="absolute -bottom-24 right-4 md:-bottom-48 md:right-32 w-[300px] md:w-[500px] object-contain z-10 pointer-events-auto opacity-95"
+        className="absolute -bottom-12 -right-8 md:-bottom-48 md:right-32 w-[250px] md:w-[500px] object-contain z-0 md:z-10 pointer-events-auto opacity-30 md:opacity-95 blur-[2px] md:blur-none"
         animate={{ 
           y: [0, -15, 0],
           rotate: [0, -1, 2, -1, 0],
