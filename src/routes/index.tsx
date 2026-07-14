@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { lazy, type MouseEvent, useRef } from "react";
+import { type MouseEvent, useRef } from "react";
+import { Gamepad2, Bot, Code2 } from "lucide-react";
 import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ClientOnly from "@/components/ClientOnly";
@@ -16,8 +17,6 @@ import avatarImg from "@/assets/avatar_front_with_shield.png";
 import oblivionImg from "@/assets/project-oblivion.jpg";
 import undefinedImg from "@/assets/project-undefined.jpg";
 import txImg from "@/assets/project-tx.jpg";
-
-const ShieldScene = lazy(() => import("@/components/ShieldScene"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -112,14 +111,17 @@ const DEVLOG = [
 const SERVICES = [
   {
     title: "GAME DEV",
+    icon: Gamepad2,
     items: ["Unity & Unreal Engine", "2D & 3D Game Design", "Shader Development", "Game Mechanics"],
   },
   {
     title: "DISCORD BOTS",
+    icon: Bot,
     items: ["Custom Discord Bots", "Server Management", "Game Integration", "API Development"],
   },
   {
     title: "SOFTWARE",
+    icon: Code2,
     items: ["Full-Stack Apps", "Desktop Software", "Automation Tools", "System Architecture"],
   },
 ];
@@ -646,8 +648,6 @@ function Devlog() {
   );
 }
 
-const SERVICE_ICONS = ["🎮", "🤖", "💻"];
-
 function Hire() {
   return (
     <>
@@ -682,31 +682,40 @@ function Hire() {
             </motion.div>
 
             <div className="lg:col-span-7 grid sm:grid-cols-3 gap-4">
-              {SERVICES.map((s, i) => (
-                <motion.div
-                  key={s.title}
-                  variants={REVEAL}
-                  custom={i * 0.5}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  whileHover={{
-                    y: -6,
-                    transition: { type: "spring", stiffness: 300, damping: 22 },
-                  }}
-                  className="border border-border bg-surface/50 backdrop-blur p-6 clip-corner transition-colors duration-300 hover:border-[var(--cap-gold)]/60"
-                >
-                  <div className="text-3xl mb-3">{SERVICE_ICONS[i]}</div>
-                  <div className="font-display text-2xl text-[var(--cap-gold)]">{s.title}</div>
-                  <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-                    {s.items.map((it) => (
-                      <li key={it} className="flex items-start gap-2">
-                        <span className="text-[var(--cap-red)] mt-1">▸</span> {it}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
+              {SERVICES.map((s, i) => {
+                const Icon = s.icon;
+
+                return (
+                  <motion.div
+                    key={s.title}
+                    variants={REVEAL}
+                    custom={i * 0.5}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    whileHover={{
+                      y: -6,
+                      transition: { type: "spring", stiffness: 300, damping: 22 },
+                    }}
+                    className="border border-border bg-surface/50 backdrop-blur p-6 clip-corner transition-colors duration-300 hover:border-[var(--cap-gold)]/60"
+                  >
+                    <div className="mb-3">
+                      <Icon className="h-8 w-8 text-[var(--cap-gold)]" />
+                    </div>
+
+                    <div className="font-display text-2xl text-[var(--cap-gold)]">{s.title}</div>
+
+                    <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                      {s.items.map((it) => (
+                        <li key={it} className="flex items-start gap-2">
+                          <span className="mt-1 text-[var(--cap-red)]">▸</span>
+                          {it}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
