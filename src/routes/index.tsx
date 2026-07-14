@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, type MouseEvent, useRef } from "react";
+import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ClientOnly from "@/components/ClientOnly";
 import SpiderCursor from "@/components/SpiderCursor";
@@ -22,9 +23,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "TEX.IO — Game Developer & Software Engineer" },
-      { name: "description", content: "Marvel-inspired 3D portfolio of Tex.IO — game dev, Unreal Engine 5 projects, Discord bots, and software engineering. Forged by legends." },
+      {
+        name: "description",
+        content:
+          "Marvel-inspired 3D portfolio of Tex.IO — game dev, Unreal Engine 5 projects, Discord bots, and software engineering. Forged by legends.",
+      },
       { property: "og:title", content: "TEX.IO — Building Digital Worlds" },
-      { property: "og:description", content: "Interactive shield-driven portfolio of a game developer & software engineer." },
+      {
+        property: "og:description",
+        content: "Interactive shield-driven portfolio of a game developer & software engineer.",
+      },
       { property: "og:image", content: characterImg },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: characterImg },
@@ -75,16 +83,45 @@ const PROJECTS = [
 ];
 
 const DEVLOG = [
-  { type: "PROGRESS", date: "Jan 14, 2024", title: "Gate To Oblivion — Story Development", body: "Working on the main storyline. Implementing branching narrative paths based on player choices and mythological lore integration." },
-  { type: "RELEASE", date: "Jan 9, 2024", title: "New Discord Bot Features", body: "Added game announcement channels and automated role assignment. The bot now includes mini-games for community engagement." },
-  { type: "DEVLOG", date: "Jan 4, 2024", title: "Behind the Scenes: RPG Combat System", body: "Developing the turn-based combat system for Gate To Oblivion. Focus on balancing mythological abilities and strategic depth." },
-  { type: "RELEASE", date: "Dec 31, 2023", title: "Website Redesign Complete", body: "Launched the new portfolio website — complete overhaul with split design, character showcase, and dynamic animations." },
+  {
+    type: "PROGRESS",
+    date: "Jan 14, 2024",
+    title: "Gate To Oblivion — Story Development",
+    body: "Working on the main storyline. Implementing branching narrative paths based on player choices and mythological lore integration.",
+  },
+  {
+    type: "RELEASE",
+    date: "Jan 9, 2024",
+    title: "New Discord Bot Features",
+    body: "Added game announcement channels and automated role assignment. The bot now includes mini-games for community engagement.",
+  },
+  {
+    type: "DEVLOG",
+    date: "Jan 4, 2024",
+    title: "Behind the Scenes: RPG Combat System",
+    body: "Developing the turn-based combat system for Gate To Oblivion. Focus on balancing mythological abilities and strategic depth.",
+  },
+  {
+    type: "RELEASE",
+    date: "Dec 31, 2023",
+    title: "Website Redesign Complete",
+    body: "Launched the new portfolio website — complete overhaul with split design, character showcase, and dynamic animations.",
+  },
 ];
 
 const SERVICES = [
-  { title: "GAME DEV", items: ["Unity & Unreal Engine", "2D & 3D Game Design", "Shader Development", "Game Mechanics"] },
-  { title: "DISCORD BOTS", items: ["Custom Discord Bots", "Server Management", "Game Integration", "API Development"] },
-  { title: "SOFTWARE", items: ["Full-Stack Apps", "Desktop Software", "Automation Tools", "System Architecture"] },
+  {
+    title: "GAME DEV",
+    items: ["Unity & Unreal Engine", "2D & 3D Game Design", "Shader Development", "Game Mechanics"],
+  },
+  {
+    title: "DISCORD BOTS",
+    items: ["Custom Discord Bots", "Server Management", "Game Integration", "API Development"],
+  },
+  {
+    title: "SOFTWARE",
+    items: ["Full-Stack Apps", "Desktop Software", "Automation Tools", "System Architecture"],
+  },
 ];
 
 function Nav() {
@@ -96,14 +133,23 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-background/50 border-b border-border/40">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="#home" onClick={onClick("home")} className="font-display text-2xl tracking-wider flex items-center gap-1">
+        <a
+          href="#home"
+          onClick={onClick("home")}
+          className="font-display text-2xl tracking-wider flex items-center gap-1"
+        >
           <span className="text-cap">TEX</span>
           <span className="text-foreground">.IO</span>
           <span className="ml-1 inline-block w-1.5 h-5 bg-[var(--cap-gold)] animate-pulse-glow" />
         </a>
         <nav className="hidden md:flex items-center gap-6 font-mono text-xs">
           {NAV.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={onClick(n.id)} className="text-muted-foreground hover:text-[var(--cap-gold)] transition-colors">
+            <a
+              key={n.id}
+              href={`#${n.id}`}
+              onClick={onClick(n.id)}
+              className="text-muted-foreground hover:text-[var(--cap-gold)] transition-colors"
+            >
               {n.label}
             </a>
           ))}
@@ -125,7 +171,9 @@ function MarvelTitleCard() {
     <div className="relative inline-block text-center">
       <div className="flex items-center justify-center gap-3 mb-3">
         <div className="h-[2px] w-10 bg-[var(--cap-red)]" />
-        <span className="font-display text-sm tracking-[0.4em] text-[var(--cap-cream)]">PRESENTS</span>
+        <span className="font-display text-sm tracking-[0.4em] text-[var(--cap-cream)]">
+          PRESENTS
+        </span>
         <div className="h-[2px] w-10 bg-[var(--cap-red)]" />
       </div>
       <div className="relative">
@@ -148,7 +196,10 @@ function Hero() {
   const webScroll = useWebScroll();
 
   return (
-    <section id="home" className="relative min-h-[82vh] pt-24 pb-16 flex items-center justify-center">
+    <section
+      id="home"
+      className="relative min-h-[82vh] pt-24 pb-16 flex items-center justify-center"
+    >
       {/* Subtle ambient gradient — placeholder until user decides hero content */}
       <div
         aria-hidden
@@ -178,14 +229,20 @@ function Hero() {
         >
           <a
             href="#projects"
-            onClick={(e) => { e.preventDefault(); webScroll("projects", { clientX: e.clientX, clientY: e.clientY }); }}
+            onClick={(e) => {
+              e.preventDefault();
+              webScroll("projects", { clientX: e.clientX, clientY: e.clientY });
+            }}
             className="clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 inline-flex items-center gap-3 hover:glow-blue transition-all"
           >
             VIEW PROJECTS <span aria-hidden>→</span>
           </a>
           <a
             href="#heroes"
-            onClick={(e) => { e.preventDefault(); webScroll("heroes", { clientX: e.clientX, clientY: e.clientY }); }}
+            onClick={(e) => {
+              e.preventDefault();
+              webScroll("heroes", { clientX: e.clientX, clientY: e.clientY });
+            }}
             className="clip-corner border border-[var(--cap-gold)] text-[var(--cap-gold)] font-mono text-sm font-bold px-7 py-3.5 inline-flex items-center gap-3 hover:bg-[var(--cap-gold)]/10 transition-all"
           >
             INSPIRATIONS
@@ -198,10 +255,16 @@ function Hero() {
           transition={{ duration: 1, delay: 0.65 }}
           className="mt-10 flex flex-wrap gap-6 md:gap-12 justify-center"
         >
-          {[{ n: "2", l: "GAMES" }, { n: "5", l: "YEARS XP" }, { n: "100", l: "% PASSION" }].map((s) => (
+          {[
+            { n: "2", l: "GAMES" },
+            { n: "5", l: "YEARS XP" },
+            { n: "100", l: "% PASSION" },
+          ].map((s) => (
             <div key={s.l}>
               <div className="font-display text-4xl text-[var(--cap-gold)]">{s.n}</div>
-              <div className="font-mono text-[10px] tracking-widest text-muted-foreground mt-1">{s.l}</div>
+              <div className="font-mono text-[10px] tracking-widest text-muted-foreground mt-1">
+                {s.l}
+              </div>
             </div>
           ))}
         </motion.div>
@@ -223,41 +286,41 @@ function Hero() {
       </motion.div>
 
       {/* Face of the Website: Avatar with Shield (Anchored to Section Bottom) */}
-      <motion.img 
+      <motion.img
         src={avatarImg}
         alt="Texio Avatar"
         className="absolute -bottom-12 -right-8 md:-bottom-48 md:right-32 w-[250px] md:w-[500px] object-contain z-0 md:z-10 pointer-events-auto opacity-30 md:opacity-95 blur-[2px] md:blur-none"
-        animate={{ 
+        animate={{
           y: [0, -15, 0],
           rotate: [0, -1, 2, -1, 0],
           filter: [
             "drop-shadow(0 0 20px rgba(126,24,235,0.4)) drop-shadow(0 0 10px rgba(126,24,235,0.2))",
             "drop-shadow(0 0 40px rgba(126,24,235,0.8)) drop-shadow(0 0 20px rgba(126,24,235,0.4))",
-            "drop-shadow(0 0 20px rgba(126,24,235,0.4)) drop-shadow(0 0 10px rgba(126,24,235,0.2))"
-          ]
+            "drop-shadow(0 0 20px rgba(126,24,235,0.4)) drop-shadow(0 0 10px rgba(126,24,235,0.2))",
+          ],
         }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
+        transition={{
+          duration: 6,
+          repeat: Infinity,
           ease: "easeInOut",
-          times: [0, 0.5, 1] 
+          times: [0, 0.5, 1],
         }}
-        whileHover={{ 
-          scale: 1.05, 
+        whileHover={{
+          scale: 1.05,
           rotate: 3,
-          filter: "drop-shadow(0 0 50px rgba(126,24,235,1)) drop-shadow(0 0 30px rgba(230,36,41,0.8))",
-          transition: { duration: 0.4, ease: "easeOut" }
+          filter:
+            "drop-shadow(0 0 50px rgba(126,24,235,1)) drop-shadow(0 0 30px rgba(230,36,41,0.8))",
+          transition: { duration: 0.4, ease: "easeOut" },
         }}
-        whileTap={{ 
-          scale: 0.95, 
+        whileTap={{
+          scale: 0.95,
           rotate: -3,
-          filter: "drop-shadow(0 0 15px rgba(230,36,41,0.6))"
+          filter: "drop-shadow(0 0 15px rgba(230,36,41,0.6))",
         }}
       />
     </section>
   );
 }
-
 
 /* ─── Shared scroll reveal variants — easeOutExpo, blur-fade-slide ── */
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -290,11 +353,16 @@ function Character() {
 
   return (
     <>
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <section ref={secRef} id="character" className="relative py-24 px-6">
         <div className="mx-auto max-w-7xl">
           <motion.div
-            variants={REVEAL_LEFT} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+            variants={REVEAL_LEFT}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
             className="font-mono text-xs text-[var(--cap-red)] mb-4 flex items-center gap-3"
           >
             <span className="inline-block w-8 h-px bg-[var(--cap-red)]" />
@@ -304,7 +372,10 @@ function Character() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Image with parallax */}
             <motion.div
-              variants={REVEAL} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+              variants={REVEAL}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               className="relative overflow-hidden"
             >
               <div className="absolute -inset-4 bg-gradient-to-br from-[var(--cap-red)]/30 via-[var(--cap-gold)]/15 to-transparent blur-3xl" />
@@ -313,7 +384,8 @@ function Character() {
                 <motion.img
                   src={characterImg}
                   alt="TEXIO character render"
-                  width={1280} height={1600}
+                  width={1280}
+                  height={1600}
                   className="w-full aspect-[4/5] object-cover"
                   style={{ y: imgY, scale: 1.08 }}
                 />
@@ -324,13 +396,18 @@ function Character() {
                   BLENDER · UE5
                 </div>
                 <div className="absolute top-3 right-3 font-mono text-[10px] text-[var(--cap-blue)] tracking-widest">
-                  <span className="animate-pulse-glow inline-block w-1.5 h-1.5 rounded-full bg-[var(--cap-blue)] mr-1" />LIVE
+                  <span className="animate-pulse-glow inline-block w-1.5 h-1.5 rounded-full bg-[var(--cap-blue)] mr-1" />
+                  LIVE
                 </div>
               </div>
             </motion.div>
 
             <motion.div
-              variants={REVEAL} custom={0.1} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+              variants={REVEAL}
+              custom={0.1}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
               <h2 className="font-display text-5xl lg:text-6xl leading-none">
                 MEET <span className="marvel-title">TEXIO</span>
@@ -340,10 +417,18 @@ function Character() {
                 AKA JOHITH
               </div>
               <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-lg">
-                The electrified warrior. Built from scratch in Blender, rigged and animated inside Unreal Engine 5 — protagonist of the entire Texioverse. Lightning-infused blades, a dark trench coat, and glowing purple eyes that pierce through shadow and myth.
+                The electrified warrior. Built from scratch in Blender, rigged and animated inside
+                Unreal Engine 5 — protagonist of the entire Texioverse. Lightning-infused blades, a
+                dark trench coat, and glowing purple eyes that pierce through shadow and myth.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
-                {["BLENDER", "UNREAL ENGINE 5", "CUSTOM RIGGING", "VFX SHADERS", "LIGHTNING SYSTEM"].map((t) => (
+                {[
+                  "BLENDER",
+                  "UNREAL ENGINE 5",
+                  "CUSTOM RIGGING",
+                  "VFX SHADERS",
+                  "LIGHTNING SYSTEM",
+                ].map((t) => (
                   <motion.span
                     key={t}
                     whileHover={{ scale: 1.05, borderColor: "var(--cap-gold)" }}
@@ -364,12 +449,17 @@ function Character() {
 function Projects() {
   return (
     <>
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <section id="projects" className="relative py-24 px-6">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
             <motion.div
-              variants={REVEAL} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+              variants={REVEAL}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="font-mono text-xs text-[var(--cap-red)] mb-3 flex items-center gap-3">
                 <span className="inline-block w-8 h-px bg-[var(--cap-red)]" />
@@ -379,7 +469,12 @@ function Projects() {
                 MY <span className="marvel-title">PROJECTS</span>
               </h2>
             </motion.div>
-            <a href="https://github.com/Johith-Tex" target="_blank" rel="noreferrer" className="font-mono text-xs text-muted-foreground hover:text-[var(--cap-gold)] transition-colors">
+            <a
+              href="https://github.com/Johith-Tex"
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-xs text-muted-foreground hover:text-[var(--cap-gold)] transition-colors"
+            >
               EXPLORE ALL REPOS ON GITHUB →
             </a>
           </div>
@@ -388,13 +483,21 @@ function Projects() {
             {PROJECTS.map((p, i) => (
               <motion.article
                 key={p.n}
-                variants={REVEAL} custom={i * 0.5} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
+                variants={REVEAL}
+                custom={i * 0.5}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
                 className="group grid lg:grid-cols-12 gap-6 items-stretch"
               >
                 {/* Image — subtle zoom on hover, clean border */}
                 <div className="lg:col-span-7 relative overflow-hidden clip-corner border border-border transition-colors duration-300 group-hover:border-[var(--cap-red)]/60">
                   <img
-                    src={p.img} alt={p.title} loading="lazy" width={1600} height={1000}
+                    src={p.img}
+                    alt={p.title}
+                    loading="lazy"
+                    width={1600}
+                    height={1000}
                     className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
@@ -408,7 +511,9 @@ function Projects() {
                   <div className="flex items-baseline justify-between">
                     <span className="font-display text-7xl text-[var(--cap-red)]/35">{p.n}</span>
                     {p.progress > 0 && (
-                      <span className="font-mono text-sm text-[var(--cap-gold)]">{p.progress}%</span>
+                      <span className="font-mono text-sm text-[var(--cap-gold)]">
+                        {p.progress}%
+                      </span>
                     )}
                   </div>
                   <h3 className="font-display text-4xl mt-2">{p.title}</h3>
@@ -426,7 +531,10 @@ function Projects() {
                   )}
                   <div className="mt-5 flex flex-wrap gap-1.5">
                     {p.tags.map((t) => (
-                      <span key={t} className="font-mono text-[10px] tracking-widest border border-border/60 px-2 py-1 text-muted-foreground hover:text-[var(--cap-gold)] hover:border-[var(--cap-gold)]/40 transition-colors">
+                      <span
+                        key={t}
+                        className="font-mono text-[10px] tracking-widest border border-border/60 px-2 py-1 text-muted-foreground hover:text-[var(--cap-gold)] hover:border-[var(--cap-gold)]/40 transition-colors"
+                      >
                         {t}
                       </span>
                     ))}
@@ -443,26 +551,53 @@ function Projects() {
 
 function Devlog() {
   const FILTERS = ["ALL", "PROGRESS", "RELEASES", "DEV LOGS"];
+
+  const [selectedFilter, setSelectedFilter] = useState("ALL");
+  const filteredLogs = DEVLOG.filter((d) => {
+    switch (selectedFilter) {
+      case "PROGRESS":
+        return d.type === "PROGRESS";
+      case "RELEASES":
+        return d.type === "RELEASE";
+      case "DEV LOGS":
+        return d.type === "DEV LOG";
+      default:
+        return true;
+    }
+  });
   return (
     <>
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <section id="devlog" className="relative py-24 px-6">
         <div className="mx-auto max-w-7xl">
           <motion.div
-            variants={REVEAL} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+            variants={REVEAL}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
           >
             <div className="font-mono text-xs text-[var(--cap-red)] mb-3 flex items-center gap-3">
               <span className="inline-block w-8 h-px bg-[var(--cap-red)]" />
               // FIELD JOURNAL
             </div>
-            <h2 className="font-display text-5xl lg:text-6xl">DEVELOPMENT <span className="marvel-title">UPDATES</span></h2>
+            <h2 className="font-display text-5xl lg:text-6xl">
+              DEVELOPMENT <span className="marvel-title">UPDATES</span>
+            </h2>
           </motion.div>
 
           <div className="mt-10 flex gap-2 flex-wrap">
             {FILTERS.map((f, i) => (
-              <button key={f} className={`web-target font-mono text-xs px-4 py-2 border transition-colors ${
-                i === 0 ? "border-[var(--cap-gold)] text-[var(--cap-gold)] bg-[var(--cap-gold)]/10" : "border-border text-muted-foreground hover:text-foreground hover:border-[var(--cap-gold)]/40"
-              }`}>
+              <button
+                key={f}
+                onClick={() => setSelectedFilter(f)}
+                className={`web-target font-mono text-xs px-4 py-2 border transition-colors ${
+                  selectedFilter === f
+                    ? "border-[var(--cap-gold)] text-[var(--cap-gold)] bg-[var(--cap-gold)]/10"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-[var(--cap-gold)]/40"
+                }`}
+              >
                 {f}
               </button>
             ))}
@@ -471,10 +606,14 @@ function Devlog() {
           {/* Timeline layout */}
           <div className="mt-12 relative timeline-connector pl-8">
             <div className="space-y-5">
-              {DEVLOG.map((d, i) => (
+              {filteredLogs.map((d, i) => (
                 <motion.div
                   key={d.title}
-                  variants={REVEAL_LEFT} custom={i * 0.5} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+                  variants={REVEAL_LEFT}
+                  custom={i * 0.5}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
                   className="relative border border-border bg-surface/40 backdrop-blur p-6 clip-corner transition-colors duration-300 hover:border-[var(--cap-gold)]/50"
                 >
                   <div
@@ -482,11 +621,17 @@ function Devlog() {
                     style={{ boxShadow: "0 0 8px var(--cap-gold)" }}
                   />
                   <div className="flex items-center justify-between font-mono text-[10px] tracking-widest flex-wrap gap-2">
-                    <span className={`px-2 py-0.5 ${
-                      d.type === "RELEASE" ? "bg-[var(--cap-gold)] text-[var(--cap-blue)]"
-                        : d.type === "PROGRESS" ? "bg-[var(--cap-red)] text-[var(--cap-cream)]"
-                          : "bg-[var(--cap-blue)] text-[var(--cap-cream)]"
-                    }`}>{d.type}</span>
+                    <span
+                      className={`px-2 py-0.5 ${
+                        d.type === "RELEASE"
+                          ? "bg-[var(--cap-gold)] text-[var(--cap-blue)]"
+                          : d.type === "PROGRESS"
+                            ? "bg-[var(--cap-red)] text-[var(--cap-cream)]"
+                            : "bg-[var(--cap-blue)] text-[var(--cap-cream)]"
+                      }`}
+                    >
+                      {d.type}
+                    </span>
                     <span className="text-muted-foreground">{d.date}</span>
                   </div>
                   <h3 className="mt-4 font-display text-2xl">{d.title}</h3>
@@ -506,21 +651,33 @@ const SERVICE_ICONS = ["🎮", "🤖", "💻"];
 function Hire() {
   return (
     <>
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <section id="hire" className="relative py-24 px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <motion.div
-              variants={REVEAL} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+              variants={REVEAL}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               className="lg:col-span-5"
             >
               <div className="font-mono text-xs text-[var(--cap-gold)] mb-3 flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-[var(--cap-gold)] animate-pulse-glow" />
                 // AVAILABLE FOR WORK
               </div>
-              <h2 className="font-display text-5xl lg:text-6xl leading-none">LET'S BUILD<br />SOMETHING<br /><span className="marvel-title">EPIC.</span></h2>
+              <h2 className="font-display text-5xl lg:text-6xl leading-none">
+                LET'S BUILD
+                <br />
+                SOMETHING
+                <br />
+                <span className="marvel-title">EPIC.</span>
+              </h2>
               <p className="mt-8 text-muted-foreground max-w-md">
-                Actively seeking opportunities in game development, software engineering, and creative tech. Let's make something unforgettable together.
+                Actively seeking opportunities in game development, software engineering, and
+                creative tech. Let's make something unforgettable together.
               </p>
             </motion.div>
 
@@ -528,8 +685,15 @@ function Hire() {
               {SERVICES.map((s, i) => (
                 <motion.div
                   key={s.title}
-                  variants={REVEAL} custom={i * 0.5} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
-                  whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
+                  variants={REVEAL}
+                  custom={i * 0.5}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  whileHover={{
+                    y: -6,
+                    transition: { type: "spring", stiffness: 300, damping: 22 },
+                  }}
                   className="border border-border bg-surface/50 backdrop-blur p-6 clip-corner transition-colors duration-300 hover:border-[var(--cap-gold)]/60"
                 >
                   <div className="text-3xl mb-3">{SERVICE_ICONS[i]}</div>
@@ -558,18 +722,33 @@ function Community() {
         <div className="font-mono text-xs text-[var(--cap-red)] mb-3">// THE COMMUNITY</div>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-display text-5xl lg:text-6xl leading-none">JOIN THE<br /><span className="marvel-title">TEXIOVERSE</span></h2>
+            <h2 className="font-display text-5xl lg:text-6xl leading-none">
+              JOIN THE
+              <br />
+              <span className="marvel-title">TEXIOVERSE</span>
+            </h2>
             <p className="mt-8 text-muted-foreground max-w-md">
-              Exclusive dev updates, beta testing, direct access, and a crew of RPG fanatics and indie devs. This is your world too.
+              Exclusive dev updates, beta testing, direct access, and a crew of RPG fanatics and
+              indie devs. This is your world too.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3 max-w-md">
-              {["Exclusive Updates", "Beta Testing Access", "Dev Discussions", "Community Hub"].map((p) => (
-                <div key={p} className="font-mono text-xs border border-border bg-surface/60 px-3 py-2.5 flex items-center gap-2">
-                  <span className="text-[var(--cap-gold)]">◇</span> {p}
-                </div>
-              ))}
+              {["Exclusive Updates", "Beta Testing Access", "Dev Discussions", "Community Hub"].map(
+                (p) => (
+                  <div
+                    key={p}
+                    className="font-mono text-xs border border-border bg-surface/60 px-3 py-2.5 flex items-center gap-2"
+                  >
+                    <span className="text-[var(--cap-gold)]">◇</span> {p}
+                  </div>
+                ),
+              )}
             </div>
-            <a href="https://discord.gg/FcGq8pjzGt" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 hover:opacity-90 transition-all">
+            <a
+              href="https://discord.gg/FcGq8pjzGt"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center gap-3 clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 hover:opacity-90 transition-all"
+            >
               JOIN TEXIOVERSE →
             </a>
           </div>
@@ -580,20 +759,32 @@ function Community() {
                 <span className="text-[var(--cap-red)]">◈</span> TEXIOVERSE
               </div>
               <span className="font-mono text-[10px] tracking-widest text-[var(--cap-gold)] flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--cap-gold)] animate-pulse-glow" /> LIVE
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--cap-gold)] animate-pulse-glow" />{" "}
+                LIVE
               </span>
             </div>
             <div className="grid grid-cols-3 px-5 py-4 border-b border-border text-center">
-              {[["ACTIVE", "Community"], ["24/7", "Chat"], ["DEVS", "Online"]].map(([a, b]) => (
+              {[
+                ["ACTIVE", "Community"],
+                ["24/7", "Chat"],
+                ["DEVS", "Online"],
+              ].map(([a, b]) => (
                 <div key={b}>
                   <div className="font-display text-2xl text-[var(--cap-gold)]">{a}</div>
-                  <div className="font-mono text-[10px] tracking-widest text-muted-foreground">{b}</div>
+                  <div className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                    {b}
+                  </div>
                 </div>
               ))}
             </div>
             <ul className="p-5 space-y-2 font-mono text-sm text-muted-foreground">
               {["# announcements", "# dev-updates", "# beta-testing", "# general"].map((c) => (
-                <li key={c} className="web-target px-3 py-2 hover:bg-surface-2/80 hover:text-[var(--cap-gold)] transition-colors">{c}</li>
+                <li
+                  key={c}
+                  className="web-target px-3 py-2 hover:bg-surface-2/80 hover:text-[var(--cap-gold)] transition-colors"
+                >
+                  {c}
+                </li>
               ))}
             </ul>
           </div>
@@ -608,26 +799,39 @@ function Contact() {
     <section id="contact" className="relative py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="font-mono text-xs text-[var(--cap-gold)] mb-3">// TRANSMIT</div>
-        <h2 className="font-display text-5xl lg:text-6xl">GET IN <span className="marvel-title">TOUCH</span></h2>
+        <h2 className="font-display text-5xl lg:text-6xl">
+          GET IN <span className="marvel-title">TOUCH</span>
+        </h2>
 
         <div className="mt-16 grid lg:grid-cols-2 gap-12">
           <div>
             <h3 className="font-display text-3xl">Let's Build Something Amazing</h3>
             <div className="mt-6 space-y-3 font-mono text-sm">
-              <a href="mailto:johithjr@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-gold)] transition-colors">
+              <a
+                href="mailto:johithjr@gmail.com"
+                className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-gold)] transition-colors"
+              >
                 <span className="text-[var(--cap-gold)]">✉</span> johithjr@gmail.com
               </a>
-              <a href="#" className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-red)] transition-colors">
+              <a
+                href="#"
+                className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-red)] transition-colors"
+              >
                 <span className="text-[var(--cap-red)]">◈</span> @tex.io
               </a>
-              <a href="https://github.com/Johith-Tex" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-cream)] transition-colors">
+              <a
+                href="https://github.com/Johith-Tex"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 text-muted-foreground hover:text-[var(--cap-cream)] transition-colors"
+              >
                 <span className="text-[var(--cap-cream)]">▣</span> Johith-Tex
               </a>
             </div>
           </div>
 
-          <form 
-            className="border border-border bg-surface/50 backdrop-blur p-6 clip-corner space-y-4" 
+          <form
+            className="border border-border bg-surface/50 backdrop-blur p-6 clip-corner space-y-4"
             onSubmit={(e) => {
               e.preventDefault();
               const formData = new FormData(e.currentTarget);
@@ -635,32 +839,68 @@ function Contact() {
               const email = formData.get("user_email");
               const type = formData.get("project_type");
               const details = formData.get("details");
-              
+
               const subject = encodeURIComponent(`Portfolio Inquiry: ${type} - from ${name}`);
-              const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nDetails:\n${details}`);
-              
+              const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nDetails:\n${details}`,
+              );
+
               window.location.href = `mailto:johithjr@gmail.com?subject=${subject}&body=${body}`;
             }}
           >
             <div>
-              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">YOUR NAME</label>
-              <input name="user_name" type="text" required placeholder="Enter your name" className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none transition-colors" />
+              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                YOUR NAME
+              </label>
+              <input
+                name="user_name"
+                type="text"
+                required
+                placeholder="Enter your name"
+                className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none transition-colors"
+              />
             </div>
             <div>
-              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">EMAIL</label>
-              <input name="user_email" type="email" required placeholder="you@domain.com" className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none transition-colors" />
+              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                EMAIL
+              </label>
+              <input
+                name="user_email"
+                type="email"
+                required
+                placeholder="you@domain.com"
+                className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none transition-colors"
+              />
             </div>
             <div>
-              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">PROJECT TYPE</label>
-              <select name="project_type" className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none">
-                {["Game Development", "Discord Bot", "Website", "Software", "Other"].map((o) => <option key={o}>{o}</option>)}
+              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                PROJECT TYPE
+              </label>
+              <select
+                name="project_type"
+                className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none"
+              >
+                {["Game Development", "Discord Bot", "Website", "Software", "Other"].map((o) => (
+                  <option key={o}>{o}</option>
+                ))}
               </select>
             </div>
             <div>
-              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">PROJECT DETAILS</label>
-              <textarea name="details" required rows={4} placeholder="Tell me about your idea..." className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none resize-none" />
+              <label className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                PROJECT DETAILS
+              </label>
+              <textarea
+                name="details"
+                required
+                rows={4}
+                placeholder="Tell me about your idea..."
+                className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none resize-none"
+              />
             </div>
-            <button type="submit" className="w-full clip-corner bg-[var(--cap-red)] text-[var(--cap-cream)] font-mono text-sm font-bold py-3.5 hover:glow-red transition-all">
+            <button
+              type="submit"
+              className="w-full clip-corner bg-[var(--cap-red)] text-[var(--cap-cream)] font-mono text-sm font-bold py-3.5 hover:glow-red transition-all"
+            >
               SEND TRANSMISSION →
             </button>
           </form>
@@ -700,11 +940,15 @@ function Index() {
       <Character />
       <Projects />
       <GithubProjects />
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <HeroesGrid />
       <Devlog />
       <Hire />
-      <div className="px-6"><div className="section-divider" /></div>
+      <div className="px-6">
+        <div className="section-divider" />
+      </div>
       <Community />
       <Contact />
       <MascotAssistant />
