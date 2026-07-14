@@ -111,3 +111,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Build outputs
+.output/
+
+# Cloudflare Wrangler
+.wrangler/
+
+# Lovable
+.lovable/
