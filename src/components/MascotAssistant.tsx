@@ -28,7 +28,7 @@ export default function MascotAssistant() {
   const [currentVideo, setCurrentVideo] = useState<string>(idleWhistle);
   const [dialogue, setDialogue] = useState<string>("");
   const [isTalking, setIsTalking] = useState(false);
-  
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const idleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const factTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -56,10 +56,13 @@ export default function MascotAssistant() {
 
   const scheduleRandomFact = () => {
     if (factTimeoutRef.current) clearTimeout(factTimeoutRef.current);
-    factTimeoutRef.current = setTimeout(() => {
-      const fact = RANDOM_FACTS[Math.floor(Math.random() * RANDOM_FACTS.length)];
-      playTalk(fact);
-    }, 15000 + Math.random() * 10000); // 15-25 seconds of idle before random fact
+    factTimeoutRef.current = setTimeout(
+      () => {
+        const fact = RANDOM_FACTS[Math.floor(Math.random() * RANDOM_FACTS.length)];
+        playTalk(fact);
+      },
+      15000 + Math.random() * 10000,
+    ); // 15-25 seconds of idle before random fact
   };
 
   useEffect(() => {
@@ -78,7 +81,7 @@ export default function MascotAssistant() {
           }
         });
       },
-      { threshold: 0.5 } // Trigger when section is 50% visible
+      { threshold: 0.5 }, // Trigger when section is 50% visible
     );
 
     const sections = document.querySelectorAll("section[id]");
@@ -95,12 +98,12 @@ export default function MascotAssistant() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
-      videoRef.current.play().catch(e => console.log("Video autoplay blocked:", e));
+      videoRef.current.play().catch((e) => console.log("Video autoplay blocked:", e));
     }
   }, [currentVideo]);
 
   return (
-    <motion.div 
+    <motion.div
       className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end pointer-events-none"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -115,10 +118,10 @@ export default function MascotAssistant() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ type: "spring", bounce: 0.5 }}
             className="relative bg-[var(--surface-2)] border border-[var(--cap-gold)] text-[var(--cap-cream)] p-4 rounded-xl mb-4 max-w-[250px] shadow-[0_0_20px_rgba(126,24,235,0.4)] pointer-events-auto"
-            style={{ 
-              fontFamily: 'var(--font-mono)', 
-              fontSize: '12px',
-              borderBottomRightRadius: '2px' // comic tail corner
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              borderBottomRightRadius: "2px", // comic tail corner
             }}
           >
             {/* Typewriter effect wrapper */}
@@ -129,7 +132,7 @@ export default function MascotAssistant() {
             >
               {dialogue}
             </motion.span>
-            
+
             {/* Comic Tail */}
             <div className="absolute -bottom-3 right-6 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[12px] border-t-[var(--cap-gold)]" />
             <div className="absolute -bottom-[10px] right-[25px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[var(--surface-2)]" />
@@ -138,11 +141,15 @@ export default function MascotAssistant() {
       </AnimatePresence>
 
       {/* Mascot Video Container */}
-      <motion.div 
+      <motion.div
         className="relative w-24 h-24 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-[var(--cap-blue)] shadow-[0_0_30px_rgba(230,36,41,0.3)] pointer-events-auto cursor-pointer"
-        whileHover={{ scale: 1.05, borderColor: "var(--cap-gold)", boxShadow: "0 0 40px rgba(126,24,235,0.6)" }}
+        whileHover={{
+          scale: 1.05,
+          borderColor: "var(--cap-gold)",
+          boxShadow: "0 0 40px rgba(126,24,235,0.6)",
+        }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => playTalk("Do not tap the glass. I am armed.", 3000)}
+        onClick={() => playTalk("Do not tap the glass. I am armed.")}
       >
         <video
           ref={videoRef}
@@ -152,8 +159,8 @@ export default function MascotAssistant() {
           playsInline
           onEnded={handleVideoEnd}
           className="w-full h-full object-cover mix-blend-screen contrast-125"
-          style={{ 
-            backgroundColor: "black" // Assuming the MP4 has a black background for screen blending
+          style={{
+            backgroundColor: "black", // Assuming the MP4 has a black background for screen blending
           }}
         />
       </motion.div>
