@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-const HEROES = [
+type Hero = {
+  name: string;
+  role: string;
+  quote: string;
+  accent: string;
+  second: string;
+  glyph: ReactNode;
+};
+
+const HEROES: Hero[] = [
   {
     name: "MY DAD",
     role: "THE FOUNDATION",
@@ -66,7 +76,9 @@ const HEROES = [
         <g stroke="oklch(0.12 0.04 270)" strokeWidth="1.2" fill="none">
           {Array.from({ length: 12 }).map((_, i) => {
             const a = (i / 12) * Math.PI * 2;
-            return <line key={i} x1="50" y1="50" x2={50 + Math.cos(a) * 44} y2={50 + Math.sin(a) * 44} />;
+            return (
+              <line key={i} x1="50" y1="50" x2={50 + Math.cos(a) * 44} y2={50 + Math.sin(a) * 44} />
+            );
           })}
           {[14, 24, 34, 42].map((r) => (
             <circle key={r} cx="50" cy="50" r={r} />
@@ -84,7 +96,12 @@ const HEROES = [
     glyph: (
       <svg viewBox="0 0 100 100" className="w-full h-full">
         <rect x="6" y="6" width="88" height="88" fill="oklch(0.14 0.03 30)" />
-        <path d="M50 12 L20 50 L50 88 L80 50 Z" fill="var(--kratos)" stroke="var(--cap-cream)" strokeWidth="2" />
+        <path
+          d="M50 12 L20 50 L50 88 L80 50 Z"
+          fill="var(--kratos)"
+          stroke="var(--cap-cream)"
+          strokeWidth="2"
+        />
         <path d="M50 28 L34 50 L50 72 L66 50 Z" fill="oklch(0.94 0.04 80)" />
         <circle cx="50" cy="50" r="6" fill="var(--kratos)" />
       </svg>
@@ -101,7 +118,14 @@ const HEROES = [
         <path d="M50 6 L90 22 L78 80 L50 94 L22 80 L10 22 Z" fill="var(--superman)" />
         <path d="M50 16 L80 28 L70 74 L50 84 L30 74 L20 28 Z" fill="var(--cap-cream)" />
         <path d="M50 24 L72 32 L64 70 L50 78 L36 70 L28 32 Z" fill="var(--cap-red)" />
-        <text x="50" y="60" textAnchor="middle" fontFamily="Bebas Neue" fontSize="36" fill="var(--cap-gold)">
+        <text
+          x="50"
+          y="60"
+          textAnchor="middle"
+          fontFamily="Bebas Neue"
+          fontSize="36"
+          fill="var(--cap-gold)"
+        >
           S
         </text>
       </svg>
