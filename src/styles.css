@@ -56,26 +56,26 @@
 :root {
   --radius: 0.25rem;
 
-  /* Blue-dominant superhero palette on deep cosmic-navy background */
-  --background: oklch(0.08 0.05 260);
-  --foreground: oklch(0.98 0.005 80);
+  /* Refined, sleek neutral dark palette */
+  --background: oklch(0.10 0.01 260);
+  --foreground: oklch(0.98 0.00 0);
 
-  --surface: oklch(0.12 0.06 260);
-  --surface-2: oklch(0.16 0.07 260);
+  --surface: oklch(0.14 0.01 260);
+  --surface-2: oklch(0.18 0.01 260);
 
-  --card: oklch(0.12 0.06 260);
-  --card-foreground: oklch(0.98 0.005 80);
-  --popover: oklch(0.12 0.06 260);
-  --popover-foreground: oklch(0.98 0.005 80);
+  --card: oklch(0.14 0.01 260);
+  --card-foreground: oklch(0.98 0.00 0);
+  --popover: oklch(0.14 0.01 260);
+  --popover-foreground: oklch(0.98 0.00 0);
 
   --primary: oklch(0.55 0.22 255);           /* Hero blue */
-  --primary-foreground: oklch(0.98 0.005 80);
+  --primary-foreground: oklch(0.98 0.00 0);
 
-  --secondary: oklch(0.22 0.10 260);
-  --secondary-foreground: oklch(0.98 0.005 80);
+  --secondary: oklch(0.22 0.01 260);
+  --secondary-foreground: oklch(0.98 0.00 0);
 
-  --muted: oklch(0.22 0.06 285);
-  --muted-foreground: oklch(0.72 0.04 285);
+  --muted: oklch(0.22 0.01 260);
+  --muted-foreground: oklch(0.65 0.01 260);
 
   --accent: oklch(0.58 0.20 250);            /* Electric blue accent */
   --accent-foreground: oklch(0.98 0.005 80);
@@ -113,7 +113,7 @@
   --shadow-gold: 0 0 30px oklch(0.78 0.16 235 / 0.55);
 }
 
-.dark { --background: oklch(0.08 0.05 260); --foreground: oklch(0.98 0.005 80); }
+.dark { --background: oklch(0.10 0.01 260); --foreground: oklch(0.98 0.00 0); }
 
 @layer base {
   * { border-color: var(--color-border); }

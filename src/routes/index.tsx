@@ -10,6 +10,7 @@ import HeroesGrid from "@/components/HeroesGrid";
 import GithubProjects from "@/components/GithubProjects";
 import { ScrollProgressBar } from "@/components/ProgressBar";
 import MascotAssistant from "@/components/MascotAssistant";
+import { Gamepad2, Bot, Code2 } from "lucide-react";
 import characterImg from "@/assets/texio-character.jpg";
 import avatarImg from "@/assets/avatar_front_with_shield.png";
 import oblivionImg from "@/assets/project-oblivion.jpg";
@@ -501,7 +502,7 @@ function Devlog() {
   );
 }
 
-const SERVICE_ICONS = ["🎮", "🤖", "💻"];
+const SERVICE_ICONS = [<Gamepad2 className="w-8 h-8 text-[var(--cap-gold)]" />, <Bot className="w-8 h-8 text-[var(--cap-gold)]" />, <Code2 className="w-8 h-8 text-[var(--cap-gold)]" />];
 
 function Hire() {
   return (
@@ -569,7 +570,7 @@ function Community() {
                 </div>
               ))}
             </div>
-            <a href="https://discord.gg/FcGq8pjzGt" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 hover:opacity-90 transition-all">
+            <a href="https://discord.gg/euxVmP5Sj" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 hover:opacity-90 transition-all">
               JOIN TEXIOVERSE →
             </a>
           </div>

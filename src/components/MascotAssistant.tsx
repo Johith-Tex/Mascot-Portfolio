@@ -91,12 +91,22 @@ export default function MascotAssistant() {
     };
   }, []);
 
-  // Force video reload on src change so it plays
+  const videos = [idleKatanas, idlePistols, idleWhistle, talks];
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
+
+  // Play active video and pause others
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch(e => console.log("Video autoplay blocked:", e));
-    }
+    videos.forEach((vid) => {
+      const el = videoRefs.current[vid];
+      if (el) {
+        if (vid === currentVideo) {
+          el.currentTime = 0;
+          el.play().catch(e => console.log("Video autoplay blocked:", e));
+        } else {
+          el.pause();
+        }
+      }
+    });
   }, [currentVideo]);
 
   return (
@@ -139,23 +149,26 @@ export default function MascotAssistant() {
 
       {/* Mascot Video Container */}
       <motion.div 
-        className="relative w-24 h-24 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-[var(--cap-blue)] shadow-[0_0_30px_rgba(230,36,41,0.3)] pointer-events-auto cursor-pointer"
+        className="relative w-24 h-24 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-[var(--cap-blue)] shadow-[0_0_30px_rgba(230,36,41,0.3)] pointer-events-auto cursor-pointer bg-black"
         whileHover={{ scale: 1.05, borderColor: "var(--cap-gold)", boxShadow: "0 0 40px rgba(126,24,235,0.6)" }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => playTalk("Do not tap the glass. I am armed.", 3000)}
+        onClick={() => playTalk("Do not tap the glass. I am armed.")}
       >
-        <video
-          ref={videoRef}
-          src={currentVideo}
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleVideoEnd}
-          className="w-full h-full object-cover mix-blend-screen contrast-125"
-          style={{ 
-            backgroundColor: "black" // Assuming the MP4 has a black background for screen blending
-          }}
-        />
+        {videos.map((vidSrc) => (
+          <video
+            key={vidSrc}
+            ref={(el) => { videoRefs.current[vidSrc] = el; }}
+            src={vidSrc}
+            muted
+            playsInline
+            onEnded={() => { if (vidSrc === currentVideo) handleVideoEnd(); }}
+            className="absolute inset-0 w-full h-full object-cover mix-blend-screen contrast-125 transition-opacity duration-300"
+            style={{ 
+              opacity: currentVideo === vidSrc ? 1 : 0,
+              backgroundColor: "black" 
+            }}
+          />
+        ))}
       </motion.div>
     </motion.div>
   );
