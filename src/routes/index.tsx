@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ClientOnly from "@/components/ClientOnly";
 import SpiderCursor from "@/components/SpiderCursor";
 import ClickFX from "@/components/ClickFX";
-import AuroraBackground from "@/components/AuroraBackground";
 import { WebTransitionProvider, useWebScroll } from "@/components/WebTransition";
 import HeroesGrid from "@/components/HeroesGrid";
 import GithubProjects from "@/components/GithubProjects";
@@ -180,7 +179,7 @@ function Hero() {
           <a
             href="#projects"
             onClick={(e) => { e.preventDefault(); webScroll("projects", { clientX: e.clientX, clientY: e.clientY }); }}
-            className="clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 inline-flex items-center gap-3 hover:glow-blue transition-all"
+            className="clip-corner bg-[var(--cap-blue)] text-[var(--cap-cream)] font-mono text-sm font-bold px-7 py-3.5 inline-flex items-center gap-3 transition-all"
           >
             VIEW PROJECTS <span aria-hidden>→</span>
           </a>
@@ -325,7 +324,7 @@ function Character() {
                   BLENDER · UE5
                 </div>
                 <div className="absolute top-3 right-3 font-mono text-[10px] text-[var(--cap-blue)] tracking-widest">
-                  <span className="animate-pulse-glow inline-block w-1.5 h-1.5 rounded-full bg-[var(--cap-blue)] mr-1" />LIVE
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--cap-blue)] mr-1" />LIVE
                 </div>
               </div>
             </motion.div>
@@ -581,7 +580,7 @@ function Community() {
                 <span className="text-[var(--cap-red)]">◈</span> TEXIOVERSE
               </div>
               <span className="font-mono text-[10px] tracking-widest text-[var(--cap-gold)] flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--cap-gold)] animate-pulse-glow" /> LIVE
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--cap-gold)]" /> LIVE
               </span>
             </div>
             <div className="grid grid-cols-3 px-5 py-4 border-b border-border text-center">
@@ -661,7 +660,7 @@ function Contact() {
               <label className="font-mono text-[10px] tracking-widest text-muted-foreground">PROJECT DETAILS</label>
               <textarea name="details" required rows={4} placeholder="Tell me about your idea..." className="mt-1.5 w-full bg-background/60 border border-border px-4 py-3 font-sans text-sm focus:border-[var(--cap-gold)] focus:outline-none resize-none" />
             </div>
-            <button type="submit" className="w-full clip-corner bg-[var(--cap-red)] text-[var(--cap-cream)] font-mono text-sm font-bold py-3.5 hover:glow-red transition-all">
+            <button type="submit" className="w-full clip-corner bg-[var(--cap-red)] text-[var(--cap-cream)] font-mono text-sm font-bold py-3.5 transition-all">
               SEND TRANSMISSION →
             </button>
           </form>
@@ -717,7 +716,6 @@ function Index() {
 function IndexWithWeb() {
   return (
     <WebTransitionProvider>
-      <AuroraBackground />
       <ClientOnly>
         <SpiderCursor />
         <ClickFX />
